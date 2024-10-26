@@ -1,0 +1,12 @@
+.table-responsive {
+    overflow-y: scroll;
+    max-height: 500px;
+    max-width: fit-content;
+    border: 5px solid rgb(69, 96, 219); /* Box border on container */
+    
+}
+
+table th, td {
+    background-color: #cfe2ff;
+    border: 3px solid rgb(69, 96, 219); /* Inner cell borders for clarity */
+}

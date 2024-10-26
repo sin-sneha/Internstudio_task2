@@ -1,0 +1,121 @@
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: cadetblue;">
+
+            <!-- Modal Header -->
+            <div class="modal-header" style="background-color:cadetblue">
+                <h4 class="modal-title" style="text-align: center;">CRUD Registration</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="clear()"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="id">Id</label>
+                        <input type="text" disabled class="form-control" id="id" [(ngModel)]="id"
+                            [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label for="productname">Product Name</label>
+                        <input type="text" class="form-control" id="productname" [(ngModel)]="productName"
+                            placeholder="Enter product name" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label for="productdescription">Product Description</label>
+                        <input type="text" class="form-control" id="productdescription" [(ngModel)]="productDescription"
+                            placeholder="Enter product description" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label for="unitprice">Unit Price</label>
+                        <input type="number" class="form-control" id="unitprice" [(ngModel)]="unitPrice"
+                            placeholder="Enter unit price" [ngModelOptions]="{standalone: true}">
+                    </div>
+
+                    <div class="input-group-append">
+                        <label for="unitprice">Stock Location</label>
+                        <select class="form-control" [(ngModel)]="stockLocation"
+                            (change)="onStockLocationChange($event)" [ngModelOptions]="{standalone: true}">
+                            <option value="" disabled selected>Select Stock Location</option>
+                            <option value="Storage A">Storage A</option>
+                            <option value="Storage B">Storage B</option>
+                            <option value="Storage C">Storage C</option>
+                            <option value="Main Storage">Main Storage</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="quantityinstock">Quantity In Stock</label>
+                        <input type="number" class="form-control" id="quantityinstock" [(ngModel)]="quantityInStock"
+                            placeholder="Enter quantity in stock" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label for="vendor">Vendor</label>
+                        <input type="text" class="form-control" id="vendor" [(ngModel)]="vendor"
+                            placeholder="Enter vendor" [ngModelOptions]="{standalone: true}">
+                    </div>
+
+
+                    <div class="text-center mb-4 mt-0 ">
+                        <button type="submit " class="btn btn-primary mr-3 " (click)="save() ">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+
+
+            <!-- Modal footer -->
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-danger " data-bs-dismiss="modal ">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- table -->
+<div class="container mt-2">
+    <h2 class="text-center"><b>CRUD</b></h2> <!-- Center title -->
+    <div class="table-responsive"> <!-- Added responsive wrapper for better alignment -->
+        <table class="table table-bordered table-hover mx-auto " style="background-color: lightgrey;">
+            <!-- Center table and add borders -->
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col">Id</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Product Description</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Stock Location</th>
+                    <th scope="col">Quantity In Stock</th>
+                    <th scope="col">Vendor</th>
+                    <th scope="col">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#myModal">Add</button>
+                    </th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let InventoryItem of InventoryArray">
+                    <td>{{ InventoryItem.Id }}</td>
+                    <td>{{ InventoryItem['Product Name'] }}</td>
+                    <td>{{ InventoryItem['Product Description'] }}</td>
+                    <td>{{ InventoryItem['Unit Price'] }}</td>
+                    <td>{{ InventoryItem['Stock Location'] }}</td>
+                    <td>{{ InventoryItem['Quantity In Stock'] }}</td>
+                    <td>{{ InventoryItem.Vendor }}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
+                            (click)="setUpdate(InventoryItem)">Edit</button>
+                    </td>
+
+                    <td>
+                        <button type="button" class="btn btn-danger" (click)="setDelete(InventoryItem)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
